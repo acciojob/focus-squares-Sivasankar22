@@ -1,20 +1,19 @@
-// Get the squares
-const square1 = document.getElementById('square1');
-const square2 = document.getElementById('square2');
-const square3 = document.getElementById('square3');
+document.addEventListener("DOMContentLoaded", function() {
+    const squares = document.querySelectorAll('.square');
 
-// Add mouseover event listeners to each square
-square1.addEventListener('mouseover', handleMouseOver);
-square2.addEventListener('mouseover', handleMouseOver);
-square3.addEventListener('mouseover', handleMouseOver);
+    squares.forEach(square => {
+        square.addEventListener('mouseover', function() {
+            squares.forEach(otherSquare => {
+                if (otherSquare !== square) {
+                    otherSquare.style.backgroundColor = '#6F4E37'; // Change color to Coffee
+                }
+            });
+        });
 
-// Function to handle mouseover event
-function handleMouseOver(event) {
-  // Change the background color of all squares to Coffee (#6F4E37)
-  square1.style.backgroundColor = '#6F4E37';
-  square2.style.backgroundColor = '#6F4E37';
-  square3.style.backgroundColor = '#6F4E37';
-
-  // Change the background color of the current square to Lavender (#E6E6FA)
-  event.target.style.backgroundColor = '#E6E6FA';
-}
+        square.addEventListener('mouseout', function() {
+            squares.forEach(otherSquare => {
+                otherSquare.style.backgroundColor = '#E6E6FA'; // Change color back to Lavender
+            });
+        });
+    });
+});
